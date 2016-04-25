@@ -4,20 +4,20 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>汲墨</title>
+  <title>ubuntu12.04编译安装opencv2.4.8过程记录 | 汲墨</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ubuntu12.04编译安装opencv2.4.8过程记录因为学习需要，前不久各种成功安装了opencv2.4.8。在ubuntu 12.04上本机安装了，交叉编译环境安装了，raspberrypi安装了。都安装成功了，本以为可以好好玩了，然后昨天脑抽，重装了电脑。遇到问题，才能进步。这一次，我打算凭着自己的记忆，重新安装一次opencv。">
+  <meta name="description" content="linux; ubuntu; opencv;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="汲墨">
+<meta property="og:title" content="ubuntu12.04编译安装opencv2.4.8过程记录">
 <meta property="og:url" content="http://blog.jjmoo.com/2014/04/14/Linux/ubuntu12.04编译安装opencv2.4.8过程记录/index.html">
 <meta property="og:site_name" content="汲墨">
-<meta property="og:description" content="ubuntu12.04编译安装opencv2.4.8过程记录因为学习需要，前不久各种成功安装了opencv2.4.8。在ubuntu 12.04上本机安装了，交叉编译环境安装了，raspberrypi安装了。都安装成功了，本以为可以好好玩了，然后昨天脑抽，重装了电脑。遇到问题，才能进步。这一次，我打算凭着自己的记忆，重新安装一次opencv。">
+<meta property="og:description" content="linux; ubuntu; opencv;">
 <meta property="og:image" content="http://7xsxyg.com2.z0.glb.clouddn.com/20140414BlogUbuntuOpenCV1.png">
 <meta property="og:image" content="http://7xsxyg.com2.z0.glb.clouddn.com/20140414BlogUbuntuOpenCV2.png">
-<meta property="og:updated_time" content="2016-04-23T20:36:34.000Z">
+<meta property="og:updated_time" content="2016-04-24T07:48:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="汲墨">
-<meta name="twitter:description" content="ubuntu12.04编译安装opencv2.4.8过程记录因为学习需要，前不久各种成功安装了opencv2.4.8。在ubuntu 12.04上本机安装了，交叉编译环境安装了，raspberrypi安装了。都安装成功了，本以为可以好好玩了，然后昨天脑抽，重装了电脑。遇到问题，才能进步。这一次，我打算凭着自己的记忆，重新安装一次opencv。">
+<meta name="twitter:title" content="ubuntu12.04编译安装opencv2.4.8过程记录">
+<meta name="twitter:description" content="linux; ubuntu; opencv;">
 <meta name="twitter:image" content="http://7xsxyg.com2.z0.glb.clouddn.com/20140414BlogUbuntuOpenCV1.png">
   
     <link rel="alternative" href="/atom.xml" title="汲墨" type="application/atom+xml">
@@ -83,7 +83,7 @@
 						<li>Links</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -120,7 +120,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						
+						<a href="/tags/linux/" style="font-size: 10px;">linux</a>
 					</div>
 				</section>
 				
@@ -208,7 +208,7 @@
   
     <div class="article-meta">
       <a href="/2014/04/14/Linux/ubuntu12.04编译安装opencv2.4.8过程记录/" class="article-date">
-  	<time datetime="2014-04-13T16:42:00.000Z" itemprop="datePublished">2014-04-14</time>
+  	<time datetime="2014-04-13T16:42:31.000Z" itemprop="datePublished">2014-04-14</time>
 </a>
     </div>
   
@@ -217,10 +217,31 @@
       <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ubuntu12.04编译安装opencv2.4.8过程记录
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- linux; ubuntu; opencv; -->
-<h2 id="ubuntu12-04编译安装opencv2-4-8过程记录"><a href="#ubuntu12-04编译安装opencv2-4-8过程记录" class="headerlink" title="ubuntu12.04编译安装opencv2.4.8过程记录"></a>ubuntu12.04编译安装opencv2.4.8过程记录</h2><p>因为学习需要，前不久各种成功安装了opencv2.4.8。<br>在ubuntu 12.04上本机安装了，交叉编译环境安装了，raspberrypi安装了。<br>都安装成功了，本以为可以好好玩了，然后昨天脑抽，重装了电脑。<br>遇到问题，才能进步。<br>这一次，我打算凭着自己的记忆，重新安装一次opencv。  <a id="more"></a><br>(<strong>温馨提示</strong>：这并不是安装教程，如果你也要安装，为了节约时间，请一定要先看第四步)  </p>
+        <p>因为学习需要，前不久各种成功安装了opencv2.4.8。<br>在ubuntu 12.04上本机安装了，交叉编译环境安装了，raspberrypi安装了。<br>都安装成功了，本以为可以好好玩了，然后昨天脑抽，重装了电脑。<br>遇到问题，才能进步。<br>这一次，我打算凭着自己的记忆，重新安装一次opencv。  <a id="more"></a><br>(<strong>温馨提示</strong>：这并不是安装教程，如果你也要安装，为了节约时间，请一定要先看第四步)  </p>
 <p><br><br>进入正题：  </p>
 <h4 id="一、永恒的第一步"><a href="#一、永恒的第一步" class="headerlink" title="一、永恒的第一步"></a>一、永恒的第一步</h4><pre><code>sudo apt-get update  
 sudo apt-get upgrade  
@@ -261,11 +282,11 @@ sudo make install
     
 <nav id="article-nav">
   
-    <a href="/2015/08/03/Linux/ubuntu小型web服务器：apache2+svn+php+tomcat+mysql+备份恢复/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/08/03/Linux/ubuntu小型apache2服务器搭建/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          (no title)
+          ubuntu小型apache2服务器搭建
         
       </div>
     </a>
@@ -302,7 +323,7 @@ sudo make install
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Linux/ubuntu12.04编译安装opencv2.4.8过程记录" data-title="" data-url="http://blog.jjmoo.com/2014/04/14/Linux/ubuntu12.04编译安装opencv2.4.8过程记录/"></div>
+	<div class="ds-thread" data-thread-key="Linux/ubuntu12.04编译安装opencv2.4.8过程记录" data-title="ubuntu12.04编译安装opencv2.4.8过程记录" data-url="http://blog.jjmoo.com/2014/04/14/Linux/ubuntu12.04编译安装opencv2.4.8过程记录/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

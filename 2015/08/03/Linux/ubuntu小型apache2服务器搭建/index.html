@@ -4,18 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>汲墨</title>
+  <title>ubuntu小型apache2服务器搭建 | 汲墨</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ubuntu小型web服务器：apache2+svn+php+tomcat+mysql+备份恢复搭了好几次了，每次都是东拼西凑找教程，走了不少弯路。实践出真知，自己也要总结一下：系统版本：Ubuntu 14.04.2 LTS">
+  <meta name="description" content="linux; ubuntu; apache2; svn; php; tomcat; mysql;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="汲墨">
-<meta property="og:url" content="http://blog.jjmoo.com/2015/08/03/Linux/ubuntu小型web服务器：apache2+svn+php+tomcat+mysql+备份恢复/index.html">
+<meta property="og:title" content="ubuntu小型apache2服务器搭建">
+<meta property="og:url" content="http://blog.jjmoo.com/2015/08/03/Linux/ubuntu小型apache2服务器搭建/index.html">
 <meta property="og:site_name" content="汲墨">
-<meta property="og:description" content="ubuntu小型web服务器：apache2+svn+php+tomcat+mysql+备份恢复搭了好几次了，每次都是东拼西凑找教程，走了不少弯路。实践出真知，自己也要总结一下：系统版本：Ubuntu 14.04.2 LTS">
-<meta property="og:updated_time" content="2016-04-23T20:37:08.000Z">
+<meta property="og:description" content="linux; ubuntu; apache2; svn; php; tomcat; mysql;">
+<meta property="og:updated_time" content="2016-04-24T07:55:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="汲墨">
-<meta name="twitter:description" content="ubuntu小型web服务器：apache2+svn+php+tomcat+mysql+备份恢复搭了好几次了，每次都是东拼西凑找教程，走了不少弯路。实践出真知，自己也要总结一下：系统版本：Ubuntu 14.04.2 LTS">
+<meta name="twitter:title" content="ubuntu小型apache2服务器搭建">
+<meta name="twitter:description" content="linux; ubuntu; apache2; svn; php; tomcat; mysql;">
   
     <link rel="alternative" href="/atom.xml" title="汲墨" type="application/atom+xml">
   
@@ -80,7 +80,7 @@
 						<li>Links</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -117,7 +117,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						
+						<a href="/tags/linux/" style="font-size: 10px;">linux</a>
 					</div>
 				</section>
 				
@@ -201,11 +201,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-Linux/ubuntu小型web服务器：apache2+svn+php+tomcat+mysql+备份恢复" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Linux/ubuntu小型apache2服务器搭建" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/08/03/Linux/ubuntu小型web服务器：apache2+svn+php+tomcat+mysql+备份恢复/" class="article-date">
-  	<time datetime="2015-08-03T12:17:00.000Z" itemprop="datePublished">2015-08-03</time>
+      <a href="/2015/08/03/Linux/ubuntu小型apache2服务器搭建/" class="article-date">
+  	<time datetime="2015-08-03T12:17:48.000Z" itemprop="datePublished">2015-08-03</time>
 </a>
     </div>
   
@@ -214,10 +214,31 @@
       <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ubuntu小型apache2服务器搭建
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- linux; ubuntu; apache2; svn; php; tomcat; mysql; -->
-<h2 id="ubuntu小型web服务器：apache2-svn-php-tomcat-mysql-备份恢复"><a href="#ubuntu小型web服务器：apache2-svn-php-tomcat-mysql-备份恢复" class="headerlink" title="ubuntu小型web服务器：apache2+svn+php+tomcat+mysql+备份恢复"></a>ubuntu小型web服务器：apache2+svn+php+tomcat+mysql+备份恢复</h2><p>搭了好几次了，每次都是东拼西凑找教程，走了不少弯路。<br>实践出真知，自己也要总结一下：<br>系统版本：Ubuntu 14.04.2 LTS  <a id="more"></a></p>
+        <p>搭了好几次了，每次都是东拼西凑找教程，走了不少弯路。<br>实践出真知，自己也要总结一下：<br>系统版本：Ubuntu 14.04.2 LTS  <a id="more"></a></p>
 <h4 id="一、更新"><a href="#一、更新" class="headerlink" title="一、更新"></a>一、更新</h4><pre><code>username@hostname:~$ sudo apt-get update  
 username@hostname:~$ sudo apt-get upgrade  
 </code></pre><h4 id="二、安装jdk"><a href="#二、安装jdk" class="headerlink" title="二、安装jdk"></a>二、安装jdk</h4><pre><code>username@hostname:~$ sudo apt-get install default-jdk  
@@ -461,14 +482,14 @@ exit 0
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          (no title)
+          Linux使用rm之痛和alias重定向rm到自定义脚本
         
       </div>
     </a>
   
   
     <a href="/2014/04/14/Linux/ubuntu12.04编译安装opencv2.4.8过程记录/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
+      <div class="article-nav-title">ubuntu12.04编译安装opencv2.4.8过程记录</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -503,7 +524,7 @@ exit 0
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Linux/ubuntu小型web服务器：apache2+svn+php+tomcat+mysql+备份恢复" data-title="" data-url="http://blog.jjmoo.com/2015/08/03/Linux/ubuntu小型web服务器：apache2+svn+php+tomcat+mysql+备份恢复/"></div>
+	<div class="ds-thread" data-thread-key="Linux/ubuntu小型apache2服务器搭建" data-title="ubuntu小型apache2服务器搭建" data-url="http://blog.jjmoo.com/2015/08/03/Linux/ubuntu小型apache2服务器搭建/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

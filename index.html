@@ -79,7 +79,7 @@
 						<li>Links</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -116,7 +116,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						
+						<a href="/tags/linux/" style="font-size: 10px;">linux</a>
 					</div>
 				</section>
 				
@@ -206,7 +206,7 @@
   
     <div class="article-meta">
       <a href="/2016/04/16/Linux/Linux使用rm之痛和alias重定向rm到自定义脚本/" class="article-date">
-  	<time datetime="2016-04-16T07:32:00.000Z" itemprop="datePublished">2016-04-16</time>
+  	<time datetime="2016-04-16T07:32:13.000Z" itemprop="datePublished">2016-04-16</time>
 </a>
     </div>
   
@@ -215,16 +215,30 @@
       <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/16/Linux/Linux使用rm之痛和alias重定向rm到自定义脚本/">Linux使用rm之痛和alias重定向rm到自定义脚本</a>
+    </h1>
+  
+
+      </header>
+      
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- linux; rm; shell; alias; -->
-<h2 id="Linux使用rm之痛和alias重定向rm到自定义脚本"><a href="#Linux使用rm之痛和alias重定向rm到自定义脚本" class="headerlink" title="Linux使用rm之痛和alias重定向rm到自定义脚本"></a>Linux使用rm之痛和alias重定向rm到自定义脚本</h2><p>今天脑袋有点蒙，做了一件愚蠢的事情。<br>把前段时间写的代码rm了，用testdisk恢复出来了几十个G的文件，没有文件名和目录结构，还是果断放弃了。<br>事情是这样的，本来只是想重命名文件夹，腾出名字来svn co的，结果脑袋进水把mv写成了rm，提示是文件夹以后还条件反射的加了个-r参数，于是就彻底悲剧了。<br>在寻找恢复办法的过程中，看到网上有很多人也遇到了这样的问题，还有些公司甚至禁止使用rm命令。<br>痛定思痛，为了防止悲剧重演，果断使用alias将rm指向了自己写的shell脚本，顺便温习一下shell脚本的编写。
+        <p>今天脑袋有点蒙，做了一件愚蠢的事情。<br>把前段时间写的代码rm了，用testdisk恢复出来了几十个G的文件，没有文件名和目录结构，还是果断放弃了。<br>事情是这样的，本来只是想重命名文件夹，腾出名字来svn co的，结果脑袋进水把mv写成了rm，提示是文件夹以后还条件反射的加了个-r参数，于是就彻底悲剧了。<br>在寻找恢复办法的过程中，看到网上有很多人也遇到了这样的问题，还有些公司甚至禁止使用rm命令。<br>痛定思痛，为了防止悲剧重演，果断使用alias将rm指向了自己写的shell脚本，顺便温习一下shell脚本的编写。
       
     </div>
     
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+	</div>
+
       
 
       
@@ -248,11 +262,11 @@
 
 
   
-    <article id="post-Linux/ubuntu小型web服务器：apache2+svn+php+tomcat+mysql+备份恢复" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Linux/ubuntu小型apache2服务器搭建" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/08/03/Linux/ubuntu小型web服务器：apache2+svn+php+tomcat+mysql+备份恢复/" class="article-date">
-  	<time datetime="2015-08-03T12:17:00.000Z" itemprop="datePublished">2015-08-03</time>
+      <a href="/2015/08/03/Linux/ubuntu小型apache2服务器搭建/" class="article-date">
+  	<time datetime="2015-08-03T12:17:48.000Z" itemprop="datePublished">2015-08-03</time>
 </a>
     </div>
   
@@ -261,21 +275,35 @@
       <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/03/Linux/ubuntu小型apache2服务器搭建/">ubuntu小型apache2服务器搭建</a>
+    </h1>
+  
+
+      </header>
+      
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- linux; ubuntu; apache2; svn; php; tomcat; mysql; -->
-<h2 id="ubuntu小型web服务器：apache2-svn-php-tomcat-mysql-备份恢复"><a href="#ubuntu小型web服务器：apache2-svn-php-tomcat-mysql-备份恢复" class="headerlink" title="ubuntu小型web服务器：apache2+svn+php+tomcat+mysql+备份恢复"></a>ubuntu小型web服务器：apache2+svn+php+tomcat+mysql+备份恢复</h2><p>搭了好几次了，每次都是东拼西凑找教程，走了不少弯路。<br>实践出真知，自己也要总结一下：<br>系统版本：Ubuntu 14.04.2 LTS
+        <p>搭了好几次了，每次都是东拼西凑找教程，走了不少弯路。<br>实践出真知，自己也要总结一下：<br>系统版本：Ubuntu 14.04.2 LTS
       
     </div>
     
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a  href="/2015/08/03/Linux/ubuntu小型web服务器：apache2+svn+php+tomcat+mysql+备份恢复/#more">more >></a>
+          <a  href="/2015/08/03/Linux/ubuntu小型apache2服务器搭建/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -298,7 +326,7 @@
   
     <div class="article-meta">
       <a href="/2014/04/14/Linux/ubuntu12.04编译安装opencv2.4.8过程记录/" class="article-date">
-  	<time datetime="2014-04-13T16:42:00.000Z" itemprop="datePublished">2014-04-14</time>
+  	<time datetime="2014-04-13T16:42:31.000Z" itemprop="datePublished">2014-04-14</time>
 </a>
     </div>
   
@@ -307,16 +335,30 @@
       <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/04/14/Linux/ubuntu12.04编译安装opencv2.4.8过程记录/">ubuntu12.04编译安装opencv2.4.8过程记录</a>
+    </h1>
+  
+
+      </header>
+      
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- linux; ubuntu; opencv; -->
-<h2 id="ubuntu12-04编译安装opencv2-4-8过程记录"><a href="#ubuntu12-04编译安装opencv2-4-8过程记录" class="headerlink" title="ubuntu12.04编译安装opencv2.4.8过程记录"></a>ubuntu12.04编译安装opencv2.4.8过程记录</h2><p>因为学习需要，前不久各种成功安装了opencv2.4.8。<br>在ubuntu 12.04上本机安装了，交叉编译环境安装了，raspberrypi安装了。<br>都安装成功了，本以为可以好好玩了，然后昨天脑抽，重装了电脑。<br>遇到问题，才能进步。<br>这一次，我打算凭着自己的记忆，重新安装一次opencv。
+        <p>因为学习需要，前不久各种成功安装了opencv2.4.8。<br>在ubuntu 12.04上本机安装了，交叉编译环境安装了，raspberrypi安装了。<br>都安装成功了，本以为可以好好玩了，然后昨天脑抽，重装了电脑。<br>遇到问题，才能进步。<br>这一次，我打算凭着自己的记忆，重新安装一次opencv。
       
     </div>
     
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+	</div>
+
       
 
       
