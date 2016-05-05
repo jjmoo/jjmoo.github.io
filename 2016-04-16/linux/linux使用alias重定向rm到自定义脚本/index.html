@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Linux使用rm之痛和alias重定向rm到自定义脚本 | Zohn的博客|汲墨</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今天脑袋有点蒙，做了一件愚蠢的事情。把前段时间写的代码rm了，用testdisk恢复出来了几十个G的文件，没有文件名和目录结构，还是果断放弃了。事情是这样的，本来只是想重命名文件夹，腾出名字来svn co的，结果脑袋进水把mv写成了rm，提示是文件夹以后还条件反射的加了个-r参数，于是就彻底悲剧了。在寻找恢复办法的过程中，看到网上有很多人也遇到了这样的问题，还有些公司甚至禁止使用rm命令。痛定思痛">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux使用rm之痛和alias重定向rm到自定义脚本">
+<meta property="og:url" content="http://www.jjmoo.com/2016-04-16/linux/linux使用alias重定向rm到自定义脚本/index.html">
+<meta property="og:site_name" content="Zohn的博客|汲墨">
+<meta property="og:description" content="今天脑袋有点蒙，做了一件愚蠢的事情。把前段时间写的代码rm了，用testdisk恢复出来了几十个G的文件，没有文件名和目录结构，还是果断放弃了。事情是这样的，本来只是想重命名文件夹，腾出名字来svn co的，结果脑袋进水把mv写成了rm，提示是文件夹以后还条件反射的加了个-r参数，于是就彻底悲剧了。在寻找恢复办法的过程中，看到网上有很多人也遇到了这样的问题，还有些公司甚至禁止使用rm命令。痛定思痛">
+<meta property="og:updated_time" content="2016-04-26T15:08:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux使用rm之痛和alias重定向rm到自定义脚本">
+<meta name="twitter:description" content="今天脑袋有点蒙，做了一件愚蠢的事情。把前段时间写的代码rm了，用testdisk恢复出来了几十个G的文件，没有文件名和目录结构，还是果断放弃了。事情是这样的，本来只是想重命名文件夹，腾出名字来svn co的，结果脑袋进水把mv写成了rm，提示是文件夹以后还条件反射的加了个-r参数，于是就彻底悲剧了。在寻找恢复办法的过程中，看到网上有很多人也遇到了这样的问题，还有些公司甚至禁止使用rm命令。痛定思痛">
+  
+    <link rel="alternative" href="/atom.xml" title="Zohn的博客|汲墨" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="null" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Zohn</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">昨夜西风凋碧树 望尽天涯路</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/apache2/" style="font-size: 10px;">apache2</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Zohn</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="null" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Zohn</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">昨夜西风凋碧树 望尽天涯路</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-linux/linux使用alias重定向rm到自定义脚本" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016-04-16/linux/linux使用alias重定向rm到自定义脚本/" class="article-date">
+  	<time datetime="2016-04-16T07:32:13.000Z" itemprop="datePublished">2016-04-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux使用rm之痛和alias重定向rm到自定义脚本
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天脑袋有点蒙，做了一件愚蠢的事情。<br>把前段时间写的代码rm了，用testdisk恢复出来了几十个G的文件，没有文件名和目录结构，还是果断放弃了。<br>事情是这样的，本来只是想重命名文件夹，腾出名字来svn co的，结果脑袋进水把mv写成了rm，提示是文件夹以后还条件反射的加了个-r参数，于是就彻底悲剧了。<br>在寻找恢复办法的过程中，看到网上有很多人也遇到了这样的问题，还有些公司甚至禁止使用rm命令。<br>痛定思痛，为了防止悲剧重演，果断使用alias将rm指向了自己写的shell脚本，顺便温习一下shell脚本的编写。  <a id="more"></a></p>
+<p><em>大致思路如下：</em><br><strong>运行rm命令时，执行脚本，屏蔽rm的选项参数，将要rm的文件或文件夹mv到某一个隐藏的临时文件夹中。每天第一次执行这个脚本后，自动清除30天前的文件，以防占用过多的空间。</strong>  </p>
+<p>shell脚本/home/pz/.rm.sh如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash  </span><br><span class="line">  </span></span><br><span class="line"><span class="comment"># 设置回收路径  </span></span><br><span class="line">trashPath=<span class="variable">$HOME</span>/.MyTrash  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 设置保存时间,2592000为30天  </span></span><br><span class="line">period=2592000  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 创建回收文件夹  </span></span><br><span class="line"><span class="keyword">if</span> [ ! <span class="_">-d</span> <span class="string">"<span class="variable">$trashPath</span>"</span> ]; <span class="keyword">then</span>  </span><br><span class="line">    mkdir <span class="variable">$trashPath</span>  </span><br><span class="line"><span class="keyword">fi</span>  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 清除命令中的所有开关选项  </span></span><br><span class="line">args=<span class="variable">$&#123;@##-*&#125;</span>  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 根据当前时间新建临时文件夹  </span></span><br><span class="line">dest=<span class="variable">$trashPath</span>/`date <span class="string">"+%Y-%m-%d_%H:%M:%S_%s"</span>`/  </span><br><span class="line"><span class="keyword">if</span> [ ! <span class="_">-d</span> <span class="string">"<span class="variable">$dest</span>"</span> ]; <span class="keyword">then</span>  </span><br><span class="line">    mkdir <span class="variable">$dest</span>  </span><br><span class="line"><span class="keyword">fi</span>  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 移动文件，如有必要，修改错误信息并输出  </span></span><br><span class="line">msg=`mv <span class="variable">$args</span> <span class="string">"<span class="variable">$dest</span>"</span> 2&gt;&amp;1`  </span><br><span class="line"><span class="keyword">if</span> [ ! <span class="string">"<span class="variable">$msg</span>"</span> = <span class="string">""</span> ]; <span class="keyword">then</span>  </span><br><span class="line">	<span class="built_in">echo</span> <span class="variable">$&#123;msg//mv/my_rm&#125;</span>  <span class="comment"># 将错误信息中的“mv”替换成"my_rm"  </span></span><br><span class="line"><span class="keyword">fi</span>  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># ======================================  </span></span><br><span class="line"><span class="comment"># 每天第一次使用这个命令后，清理一段时间以前回收的文件  </span></span><br><span class="line"><span class="comment"># ------------------------------  </span></span><br><span class="line"><span class="comment"># 定义清理旧文件的函数  </span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">clearOldFile</span></span>()  </span><br><span class="line">&#123;  </span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"delete old file, please wait ..."</span>  </span><br><span class="line">	  </span><br><span class="line">	now=`date <span class="string">"+%s"</span>`  </span><br><span class="line">	<span class="keyword">for</span> folder <span class="keyword">in</span> `ls <span class="variable">$trashPath</span>`  </span><br><span class="line">	<span class="keyword">do</span>  </span><br><span class="line">		folderTime=<span class="variable">$&#123;folder##*_&#125;</span>  <span class="comment"># 获取文件名中“_”后的数字  </span></span><br><span class="line">		gap=`expr <span class="variable">$now</span> - <span class="variable">$folderTime</span>`  </span><br><span class="line">		<span class="comment"># echo $folder    $gap  </span></span><br><span class="line">		<span class="keyword">if</span> [ <span class="variable">$gap</span> <span class="_">-gt</span> <span class="variable">$period</span> ]; <span class="keyword">then</span>  </span><br><span class="line">			<span class="comment"># echo rm $trashPath/$folder  </span></span><br><span class="line">			/bin/rm -rf <span class="variable">$trashPath</span>/<span class="variable">$folder</span>  <span class="comment"># 删除$period之前的文件夹  </span></span><br><span class="line">		<span class="keyword">fi</span>  </span><br><span class="line">	<span class="keyword">done</span>  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment"># ------------------------------  </span></span><br><span class="line"><span class="comment"># 设置标志文件路径  </span></span><br><span class="line">flagFile=<span class="variable">$trashPath</span>/.flag  </span><br><span class="line">  </span><br><span class="line">today=`date <span class="string">"+%d"</span>`  </span><br><span class="line"><span class="keyword">if</span> [ <span class="_">-f</span> <span class="string">"<span class="variable">$flagFile</span>"</span> ]; <span class="keyword">then</span>  </span><br><span class="line">	lastTime=`cat <span class="variable">$flagFile</span>`  <span class="comment"># 读取标志文件中的日期  </span></span><br><span class="line">	<span class="keyword">if</span> [ <span class="string">"<span class="variable">$lastTime</span>"</span> <span class="_">-ne</span> <span class="string">"<span class="variable">$today</span>"</span> ]; <span class="keyword">then</span>  <span class="comment"># 如果不是今天的日期就清理  </span></span><br><span class="line">		clearOldFile  </span><br><span class="line">	<span class="keyword">fi</span>  </span><br><span class="line"><span class="keyword">else</span>  <span class="comment"># 标志文件不存在也要清理  </span></span><br><span class="line">	clearOldFile  </span><br><span class="line"><span class="keyword">fi</span>  </span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$today</span> &gt; <span class="variable">$flagFile</span>  <span class="comment"># 输出今天的日期到标志文件  </span></span><br><span class="line"><span class="comment"># =====================================</span></span><br></pre></td></tr></table></figure></p>
+<p>最后，将alias命令写入.bashrc或者.zshrc中，已保证每次使用bash或者zsh运行rm命令时，都是执行的这个脚本。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> rm=<span class="variable">$HOME</span>/.rm.sh</span><br></pre></td></tr></table></figure></p>
+<p><strong>使用/bin/rm时，请一定要谨慎。</strong>  </p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015-08-03/linux/ubuntu小型apache2服务器搭建/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ubuntu小型apache2服务器搭建</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="linux/linux使用alias重定向rm到自定义脚本" data-title="Linux使用rm之痛和alias重定向rm到自定义脚本" data-url="http://www.jjmoo.com/2016-04-16/linux/linux使用alias重定向rm到自定义脚本/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"jjmoo"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Zohn
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
