@@ -9,16 +9,16 @@
   <meta name="description" content="因为学习需要，前不久各种成功安装了opencv2.4.8。在ubuntu 12.04上本机安装了，交叉编译环境安装了，raspberrypi安装了。都安装成功了，本以为可以好好玩了，然后昨天脑抽，重装了电脑。遇到问题，才能进步。这一次，我打算凭着自己的记忆，重新安装一次opencv。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ubuntu编译安装opencv2.4.8过程记录">
-<meta property="og:url" content="http://www.jjmoo.com/2014-04-14/ubuntu编译安装opencv2.4.8过程记录.html">
+<meta property="og:url" content="http://www.jjmoo.com/2014-04-14/linux/environment/install_opencv2.4.8.html">
 <meta property="og:site_name" content="汲墨 | Zohn的博客">
 <meta property="og:description" content="因为学习需要，前不久各种成功安装了opencv2.4.8。在ubuntu 12.04上本机安装了，交叉编译环境安装了，raspberrypi安装了。都安装成功了，本以为可以好好玩了，然后昨天脑抽，重装了电脑。遇到问题，才能进步。这一次，我打算凭着自己的记忆，重新安装一次opencv。">
-<meta property="og:image" content="http://7xsxyg.com2.z0.glb.clouddn.com/20140414BlogUbuntuOpenCV1.png">
-<meta property="og:image" content="http://7xsxyg.com2.z0.glb.clouddn.com/20140414BlogUbuntuOpenCV2.png">
-<meta property="og:updated_time" content="2016-05-06T09:27:28.000Z">
+<meta property="og:image" content="http://cdn1.jjmoo.com/img/blog/linux/environment/2014041401.png-jjmoo">
+<meta property="og:image" content="http://cdn1.jjmoo.com/img/blog/linux/environment/2014041402.png-jjmoo">
+<meta property="og:updated_time" content="2016-05-07T06:11:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ubuntu编译安装opencv2.4.8过程记录">
 <meta name="twitter:description" content="因为学习需要，前不久各种成功安装了opencv2.4.8。在ubuntu 12.04上本机安装了，交叉编译环境安装了，raspberrypi安装了。都安装成功了，本以为可以好好玩了，然后昨天脑抽，重装了电脑。遇到问题，才能进步。这一次，我打算凭着自己的记忆，重新安装一次opencv。">
-<meta name="twitter:image" content="http://7xsxyg.com2.z0.glb.clouddn.com/20140414BlogUbuntuOpenCV1.png">
+<meta name="twitter:image" content="http://cdn1.jjmoo.com/img/blog/linux/environment/2014041401.png-jjmoo">
   
     <link rel="alternative" href="/atom.xml" title="汲墨 | Zohn的博客" type="application/atom+xml">
   
@@ -83,7 +83,7 @@
 						<li>Links</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -204,10 +204,10 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-ubuntu编译安装opencv2.4.8过程记录" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-linux/environment/install_opencv2.4.8" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014-04-14/ubuntu编译安装opencv2.4.8过程记录.html" class="article-date">
+      <a href="/2014-04-14/linux/environment/install_opencv2.4.8.html" class="article-date">
   	<time datetime="2014-04-13T16:42:31.000Z" itemprop="datePublished">2014-04-14</time>
 </a>
     </div>
@@ -251,14 +251,14 @@
 <h4 id="二、工具准备"><a href="#二、工具准备" class="headerlink" title="二、工具准备"></a>二、工具准备</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install cmake  </span><br><span class="line">sudo apt-get install cmake-curses-gui</span><br></pre></td></tr></table></figure>
 <h4 id="三、开始安装"><a href="#三、开始安装" class="headerlink" title="三、开始安装"></a>三、开始安装</h4><p>将从官网下载的源码 opencv2.4.8.zip 复制到 /home/own 下，cd到该目录，执行:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">unzip opencv2.4.8.zip  </span><br><span class="line"><span class="built_in">cd</span> opencv2.4.8  </span><br><span class="line">mkdir release  </span><br><span class="line"><span class="built_in">cd</span> release  </span><br><span class="line">ccmake ../</span><br></pre></td></tr></table></figure></p>
 <p>进入ccmake后，按c就会弹出如下界面：  </p>
-<p><img src="http://7xsxyg.com2.z0.glb.clouddn.com/20140414BlogUbuntuOpenCV1.png" alt="进入ccmake后，按c就会弹出如下界面">  </p>
+<p><img src="http://cdn1.jjmoo.com/img/blog/linux/environment/2014041401.png-jjmoo" alt="进入ccmake后，按c就会弹出如下界面">  </p>
 <p>我基本什么都没改，就把 BUILD_JPEG 和 BUILD_PNG 这两项改成了 ON ，其余全部都默认，键盘按c，然后按g，然后就回到命令行界面，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make  </span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure></p>
 <p>到了这一步，opencv就已经安装得差不多了，接下来，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/ld.so.conf.d/opencv.conf</span><br></pre></td></tr></table></figure></p>
 <p>在这个新文件里插入opencv安装的路径 “/usr/local/lib”，然后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ldconfig</span><br></pre></td></tr></table></figure></p>
 <p>到这里，opencv就安装完毕了。  </p>
 <h4 id="四、测试"><a href="#四、测试" class="headerlink" title="四、测试"></a>四、测试</h4><p>首先，重启电脑，当然，如果你要不要重启电脑的办法更好(还望告知)，然后执行，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/own/opencv-2.4.8/samples/c  </span><br><span class="line">./build_all.sh  </span><br><span class="line">./find_obj</span><br></pre></td></tr></table></figure></p>
 <p>第一步build过程应该是没有什么问题的，但是执行第二个脚本的时候，发生了错误，如下图所示：  </p>
-<p><img src="http://7xsxyg.com2.z0.glb.clouddn.com/20140414BlogUbuntuOpenCV2.png" alt="执行第二个脚本的时候，发生了错误">  </p>
+<p><img src="http://cdn1.jjmoo.com/img/blog/linux/environment/2014041402.png-jjmoo" alt="执行第二个脚本的时候，发生了错误">  </p>
 <p>根据提示，应该是缺少了某些依赖文件libgtk2.0-dev，根据提示，直接执行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libgtk2.0-dev</span><br></pre></td></tr></table></figure></p>
 <p>然后返回第三步，重新make和sudo make install，然后直接进入第四步，无需重启电脑（估计重启电脑只是为了<br>让/etc/ld.so.conf.d/opencv.conf这个文件生效），然后就会发现opencv已经可以正常运行了。  </p>
 <h4 id="五、心得"><a href="#五、心得" class="headerlink" title="五、心得"></a>五、心得</h4><p>第一次安装opencv的时候，是参照网上的教程，先安装了一大堆的依赖库(不下十个)，然后再一步步输命令装上的，虽然装上了，但是不知道为什么要装那些库，那些都是必须的吗？其实现在看来，很多并不是必须的嘛，而且，如果实在需要，以后还是可以加的。<br>只有自己认真装过一次，才能慢慢的学会在linux平台下，自己编译安装定制所需要的软件。<br><br><br><strong>遇到问题并不可怕，相反，这正是我们一个进步的契机。</strong>—— 与君共勉</p>
@@ -271,7 +271,7 @@
     
 <nav id="article-nav">
   
-    <a href="/2015-08-03/ubuntu下基于apache的小型web服务器搭建.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015-08-03/linux/environment/apache_web_sever.html" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
@@ -312,7 +312,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="ubuntu编译安装opencv2.4.8过程记录" data-title="ubuntu编译安装opencv2.4.8过程记录" data-url="http://www.jjmoo.com/2014-04-14/ubuntu编译安装opencv2.4.8过程记录.html"></div>
+	<div class="ds-thread" data-thread-key="linux/environment/install_opencv2.4.8" data-title="ubuntu编译安装opencv2.4.8过程记录" data-url="http://www.jjmoo.com/2014-04-14/linux/environment/install_opencv2.4.8.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
