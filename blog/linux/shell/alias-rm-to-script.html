@@ -6,16 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>linux使用alias重定向rm到自定义脚本 | 汲墨 | Zohn的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今天脑袋有点蒙，做了一件愚蠢的事情。把前段时间写的代码rm了，用testdisk恢复出来了几十个G的文件，没有文件名和目录结构，还是果断放弃了。事情是这样的，本来只是想重命名文件夹，腾出名字来svn co的，结果脑袋进水把mv写成了rm，提示是文件夹以后还条件反射的加了个-r参数，于是就彻底悲剧了。在寻找恢复办法的过程中，看到网上有很多人也遇到了这样的问题，还有些公司甚至禁止使用rm命令。痛定思痛">
+  <meta name="description" content="今天脑袋有点蒙，把前段时间写的代码rm了。用testdisk恢复出来了几十G的文件，没有文件名和目录结构，果断放弃了。在寻找恢复办法的过程中，看到网上有很多人也遇到了这样的问题，还有些公司甚至禁止使用rm命令。为了防止悲剧重演，使用alias重定向rm到了自定义shell脚本，顺便温习一下shell脚本的编写。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux使用alias重定向rm到自定义脚本">
-<meta property="og:url" content="http://www.jjmoo.com/2016-04-16/linux/shell/alias_rm_to_script.html">
+<meta property="og:url" content="http://www.jjmoo.com/blog/linux/shell/alias-rm-to-script.html">
 <meta property="og:site_name" content="汲墨 | Zohn的博客">
-<meta property="og:description" content="今天脑袋有点蒙，做了一件愚蠢的事情。把前段时间写的代码rm了，用testdisk恢复出来了几十个G的文件，没有文件名和目录结构，还是果断放弃了。事情是这样的，本来只是想重命名文件夹，腾出名字来svn co的，结果脑袋进水把mv写成了rm，提示是文件夹以后还条件反射的加了个-r参数，于是就彻底悲剧了。在寻找恢复办法的过程中，看到网上有很多人也遇到了这样的问题，还有些公司甚至禁止使用rm命令。痛定思痛">
-<meta property="og:updated_time" content="2016-05-06T03:42:16.000Z">
+<meta property="og:description" content="今天脑袋有点蒙，把前段时间写的代码rm了。用testdisk恢复出来了几十G的文件，没有文件名和目录结构，果断放弃了。在寻找恢复办法的过程中，看到网上有很多人也遇到了这样的问题，还有些公司甚至禁止使用rm命令。为了防止悲剧重演，使用alias重定向rm到了自定义shell脚本，顺便温习一下shell脚本的编写。">
+<meta property="og:updated_time" content="2016-05-09T09:03:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux使用alias重定向rm到自定义脚本">
-<meta name="twitter:description" content="今天脑袋有点蒙，做了一件愚蠢的事情。把前段时间写的代码rm了，用testdisk恢复出来了几十个G的文件，没有文件名和目录结构，还是果断放弃了。事情是这样的，本来只是想重命名文件夹，腾出名字来svn co的，结果脑袋进水把mv写成了rm，提示是文件夹以后还条件反射的加了个-r参数，于是就彻底悲剧了。在寻找恢复办法的过程中，看到网上有很多人也遇到了这样的问题，还有些公司甚至禁止使用rm命令。痛定思痛">
+<meta name="twitter:description" content="今天脑袋有点蒙，把前段时间写的代码rm了。用testdisk恢复出来了几十G的文件，没有文件名和目录结构，果断放弃了。在寻找恢复办法的过程中，看到网上有很多人也遇到了这样的问题，还有些公司甚至禁止使用rm命令。为了防止悲剧重演，使用alias重定向rm到了自定义shell脚本，顺便温习一下shell脚本的编写。">
   
     <link rel="alternative" href="/atom.xml" title="汲墨 | Zohn的博客" type="application/atom+xml">
   
@@ -57,16 +57,6 @@
 							<div class="ribbon"></div>
 						</div>
 						
-						<div class="icon-wrap icon-link hide" data-idx="2">
-							<div class="loopback_l"></div>
-							<div class="loopback_r"></div>
-						</div>
-						
-						
-						<div class="icon-wrap icon-me hide" data-idx="3">
-							<div class="user"></div>
-							<div class="shoulder"></div>
-						</div>
 						
 					</div>
 					
@@ -77,10 +67,6 @@
 						<li>Menu</li>
 						<li>Tags</li>
 						
-						<li>Links</li>
-						
-						
-						<li>About</li>
 						
 					</ul>
 				</div>
@@ -117,37 +103,13 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/alias/" style="font-size: 10px;">alias</a> <a href="/tags/apache/" style="font-size: 10px;">apache</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/rm/" style="font-size: 10px;">rm</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a>
+						<a href="/tags/alias/" style="font-size: 10px;">alias</a> <a href="/tags/apache/" style="font-size: 10px;">apache</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/rm/" style="font-size: 10px;">rm</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
 					</div>
 				</section>
 				
 				
 				
-				<section class="switch-part switch-part3">
-					<div id="js-friends">
-					
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
-			        
-			        </div>
-				</section>
-				
 
-				
-				
-				<section class="switch-part switch-part4">
-				
-					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
-				</section>
 				
 			</div>
 		</div>
@@ -201,10 +163,10 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-linux/shell/alias_rm_to_script" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-linux/shell/alias-rm-to-script" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016-04-16/linux/shell/alias_rm_to_script.html" class="article-date">
+      <a href="/blog/linux/shell/alias-rm-to-script.html" class="article-date">
   	<time datetime="2016-04-16T07:32:13.000Z" itemprop="datePublished">2016-04-16</time>
 </a>
     </div>
@@ -242,7 +204,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天脑袋有点蒙，做了一件愚蠢的事情。<br>把前段时间写的代码rm了，用testdisk恢复出来了几十个G的文件，没有文件名和目录结构，还是果断放弃了。<br>事情是这样的，本来只是想重命名文件夹，腾出名字来svn co的，结果脑袋进水把mv写成了rm，提示是文件夹以后还条件反射的加了个-r参数，于是就彻底悲剧了。<br>在寻找恢复办法的过程中，看到网上有很多人也遇到了这样的问题，还有些公司甚至禁止使用rm命令。<br>痛定思痛，为了防止悲剧重演，果断使用alias将rm指向了自己写的shell脚本，顺便温习一下shell脚本的编写。  <a id="more"></a></p>
+        <p>今天脑袋有点蒙，把前段时间写的代码rm了。<br>用testdisk恢复出来了几十G的文件，没有文件名和目录结构，果断放弃了。<br>在寻找恢复办法的过程中，看到网上有很多人也遇到了这样的问题，还有些公司甚至禁止使用rm命令。<br>为了防止悲剧重演，使用alias重定向rm到了自定义shell脚本，顺便温习一下shell脚本的编写。  <a id="more"></a></p>
 <p><em>大致思路如下：</em><br><strong>运行rm命令时，执行脚本，屏蔽rm的选项参数，将要rm的文件或文件夹mv到某一个隐藏的临时文件夹中。每天第一次执行这个脚本后，自动清除30天前的文件，以防占用过多的空间。</strong>  </p>
 <p>shell脚本/home/pz/.rm.sh如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash  </span><br><span class="line">  </span></span><br><span class="line"><span class="comment"># 设置回收路径  </span></span><br><span class="line">trashPath=<span class="variable">$HOME</span>/.MyTrash  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 设置保存时间,2592000为30天  </span></span><br><span class="line">period=2592000  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 创建回收文件夹  </span></span><br><span class="line"><span class="keyword">if</span> [ ! <span class="_">-d</span> <span class="string">"<span class="variable">$trashPath</span>"</span> ]; <span class="keyword">then</span>  </span><br><span class="line">    mkdir <span class="variable">$trashPath</span>  </span><br><span class="line"><span class="keyword">fi</span>  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 清除命令中的所有开关选项  </span></span><br><span class="line">args=<span class="variable">$&#123;@##-*&#125;</span>  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 根据当前时间新建临时文件夹  </span></span><br><span class="line">dest=<span class="variable">$trashPath</span>/`date <span class="string">"+%Y-%m-%d_%H:%M:%S_%s"</span>`/  </span><br><span class="line"><span class="keyword">if</span> [ ! <span class="_">-d</span> <span class="string">"<span class="variable">$dest</span>"</span> ]; <span class="keyword">then</span>  </span><br><span class="line">    mkdir <span class="variable">$dest</span>  </span><br><span class="line"><span class="keyword">fi</span>  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 移动文件，如有必要，修改错误信息并输出  </span></span><br><span class="line">msg=`mv <span class="variable">$args</span> <span class="string">"<span class="variable">$dest</span>"</span> 2&gt;&amp;1`  </span><br><span class="line"><span class="keyword">if</span> [ ! <span class="string">"<span class="variable">$msg</span>"</span> = <span class="string">""</span> ]; <span class="keyword">then</span>  </span><br><span class="line">	<span class="built_in">echo</span> <span class="variable">$&#123;msg//mv/my_rm&#125;</span>  <span class="comment"># 将错误信息中的“mv”替换成"my_rm"  </span></span><br><span class="line"><span class="keyword">fi</span>  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># ======================================  </span></span><br><span class="line"><span class="comment"># 每天第一次使用这个命令后，清理一段时间以前回收的文件  </span></span><br><span class="line"><span class="comment"># ------------------------------  </span></span><br><span class="line"><span class="comment"># 定义清理旧文件的函数  </span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">clearOldFile</span></span>()  </span><br><span class="line">&#123;  </span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"delete old file, please wait ..."</span>  </span><br><span class="line">	  </span><br><span class="line">	now=`date <span class="string">"+%s"</span>`  </span><br><span class="line">	<span class="keyword">for</span> folder <span class="keyword">in</span> `ls <span class="variable">$trashPath</span>`  </span><br><span class="line">	<span class="keyword">do</span>  </span><br><span class="line">		folderTime=<span class="variable">$&#123;folder##*_&#125;</span>  <span class="comment"># 获取文件名中“_”后的数字  </span></span><br><span class="line">		gap=`expr <span class="variable">$now</span> - <span class="variable">$folderTime</span>`  </span><br><span class="line">		<span class="comment"># echo $folder    $gap  </span></span><br><span class="line">		<span class="keyword">if</span> [ <span class="variable">$gap</span> <span class="_">-gt</span> <span class="variable">$period</span> ]; <span class="keyword">then</span>  </span><br><span class="line">			<span class="comment"># echo rm $trashPath/$folder  </span></span><br><span class="line">			/bin/rm -rf <span class="variable">$trashPath</span>/<span class="variable">$folder</span>  <span class="comment"># 删除$period之前的文件夹  </span></span><br><span class="line">		<span class="keyword">fi</span>  </span><br><span class="line">	<span class="keyword">done</span>  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment"># ------------------------------  </span></span><br><span class="line"><span class="comment"># 设置标志文件路径  </span></span><br><span class="line">flagFile=<span class="variable">$trashPath</span>/.flag  </span><br><span class="line">  </span><br><span class="line">today=`date <span class="string">"+%d"</span>`  </span><br><span class="line"><span class="keyword">if</span> [ <span class="_">-f</span> <span class="string">"<span class="variable">$flagFile</span>"</span> ]; <span class="keyword">then</span>  </span><br><span class="line">	lastTime=`cat <span class="variable">$flagFile</span>`  <span class="comment"># 读取标志文件中的日期  </span></span><br><span class="line">	<span class="keyword">if</span> [ <span class="string">"<span class="variable">$lastTime</span>"</span> <span class="_">-ne</span> <span class="string">"<span class="variable">$today</span>"</span> ]; <span class="keyword">then</span>  <span class="comment"># 如果不是今天的日期就清理  </span></span><br><span class="line">		clearOldFile  </span><br><span class="line">	<span class="keyword">fi</span>  </span><br><span class="line"><span class="keyword">else</span>  <span class="comment"># 标志文件不存在也要清理  </span></span><br><span class="line">	clearOldFile  </span><br><span class="line"><span class="keyword">fi</span>  </span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$today</span> &gt; <span class="variable">$flagFile</span>  <span class="comment"># 输出今天的日期到标志文件  </span></span><br><span class="line"><span class="comment"># =====================================</span></span><br></pre></td></tr></table></figure></p>
 <p>最后，将alias命令写入.bashrc或者.zshrc中，已保证每次使用bash或者zsh运行rm命令时，都是执行的这个脚本。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> rm=<span class="variable">$HOME</span>/.rm.sh</span><br></pre></td></tr></table></figure></p>
@@ -256,8 +218,17 @@
     
 <nav id="article-nav">
   
+    <a href="/blog/web/hexo/hexo-basic.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          hexo学习(1) -- 基本配置
+        
+      </div>
+    </a>
   
-    <a href="/2015-08-03/linux/environment/apache_web_sever.html" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/blog/linux/environment/apache-web-sever.html" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">ubuntu下基于apache的小型web服务器搭建</div>
       <strong class="article-nav-caption">></strong>
     </a>
@@ -268,32 +239,13 @@
 </article>
 
 
-<div class="share_jia">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">Share to: &nbsp; </span>
-		<a class="jiathis_button_facebook"></a> 
-    <a class="jiathis_button_twitter"></a>
-    <a class="jiathis_button_plus"></a> 
-    <a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
-
-
 
 
 
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="linux/shell/alias_rm_to_script" data-title="linux使用alias重定向rm到自定义脚本" data-url="http://www.jjmoo.com/2016-04-16/linux/shell/alias_rm_to_script.html"></div>
+	<div class="ds-thread" data-thread-key="linux/shell/alias-rm-to-script" data-title="linux使用alias重定向rm到自定义脚本" data-url="http://www.jjmoo.com/blog/linux/shell/alias-rm-to-script.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

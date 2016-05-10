@@ -9,10 +9,10 @@
   <meta name="description" content="搭了好几次了，每次都是东拼西凑找教程，走了不少弯路。实践出真知，自己也要总结一下：系统版本：Ubuntu 14.04.2 LTS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ubuntu下基于apache的小型web服务器搭建">
-<meta property="og:url" content="http://www.jjmoo.com/2015-08-03/linux/environment/apache_web_sever.html">
+<meta property="og:url" content="http://www.jjmoo.com/blog/linux/environment/apache-web-sever.html">
 <meta property="og:site_name" content="汲墨 | Zohn的博客">
 <meta property="og:description" content="搭了好几次了，每次都是东拼西凑找教程，走了不少弯路。实践出真知，自己也要总结一下：系统版本：Ubuntu 14.04.2 LTS">
-<meta property="og:updated_time" content="2016-05-06T03:46:46.000Z">
+<meta property="og:updated_time" content="2016-05-09T09:03:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ubuntu下基于apache的小型web服务器搭建">
 <meta name="twitter:description" content="搭了好几次了，每次都是东拼西凑找教程，走了不少弯路。实践出真知，自己也要总结一下：系统版本：Ubuntu 14.04.2 LTS">
@@ -57,16 +57,6 @@
 							<div class="ribbon"></div>
 						</div>
 						
-						<div class="icon-wrap icon-link hide" data-idx="2">
-							<div class="loopback_l"></div>
-							<div class="loopback_r"></div>
-						</div>
-						
-						
-						<div class="icon-wrap icon-me hide" data-idx="3">
-							<div class="user"></div>
-							<div class="shoulder"></div>
-						</div>
 						
 					</div>
 					
@@ -77,10 +67,6 @@
 						<li>Menu</li>
 						<li>Tags</li>
 						
-						<li>Links</li>
-						
-						
-						<li>About</li>
 						
 					</ul>
 				</div>
@@ -117,37 +103,13 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/alias/" style="font-size: 10px;">alias</a> <a href="/tags/apache/" style="font-size: 10px;">apache</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/rm/" style="font-size: 10px;">rm</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a>
+						<a href="/tags/alias/" style="font-size: 10px;">alias</a> <a href="/tags/apache/" style="font-size: 10px;">apache</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/rm/" style="font-size: 10px;">rm</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
 					</div>
 				</section>
 				
 				
 				
-				<section class="switch-part switch-part3">
-					<div id="js-friends">
-					
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
-			        
-			        </div>
-				</section>
-				
 
-				
-				
-				<section class="switch-part switch-part4">
-				
-					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
-				</section>
 				
 			</div>
 		</div>
@@ -201,10 +163,10 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-linux/environment/apache_web_sever" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-linux/environment/apache-web-sever" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015-08-03/linux/environment/apache_web_sever.html" class="article-date">
+      <a href="/blog/linux/environment/apache-web-sever.html" class="article-date">
   	<time datetime="2015-08-03T12:17:48.000Z" itemprop="datePublished">2015-08-03</time>
 </a>
     </div>
@@ -290,7 +252,7 @@
     
 <nav id="article-nav">
   
-    <a href="/2016-04-16/linux/shell/alias_rm_to_script.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/blog/linux/shell/alias-rm-to-script.html" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
@@ -300,7 +262,7 @@
     </a>
   
   
-    <a href="/2014-04-14/linux/environment/install_opencv2.4.8.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/blog/linux/environment/install-opencv2.4.8.html" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">ubuntu编译安装opencv2.4.8过程记录</div>
       <strong class="article-nav-caption">></strong>
     </a>
@@ -311,32 +273,13 @@
 </article>
 
 
-<div class="share_jia">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">Share to: &nbsp; </span>
-		<a class="jiathis_button_facebook"></a> 
-    <a class="jiathis_button_twitter"></a>
-    <a class="jiathis_button_plus"></a> 
-    <a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
-
-
 
 
 
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="linux/environment/apache_web_sever" data-title="ubuntu下基于apache的小型web服务器搭建" data-url="http://www.jjmoo.com/2015-08-03/linux/environment/apache_web_sever.html"></div>
+	<div class="ds-thread" data-thread-key="linux/environment/apache-web-sever" data-title="ubuntu下基于apache的小型web服务器搭建" data-url="http://www.jjmoo.com/blog/linux/environment/apache-web-sever.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
