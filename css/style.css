@@ -1643,6 +1643,13 @@ pre .css ~ * .id {
 .footer-right {
   float: right;
 }
+#footer a:link,
+#footer a:visited,
+#footer a:hover,
+#footer a:active {
+  color: #000;
+  opacity: 0.6;
+}
 .share {
   padding: 0px 75px 30px 40px;
   margin-bottom: 15px;
