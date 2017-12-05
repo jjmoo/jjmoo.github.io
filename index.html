@@ -102,7 +102,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/alias/" style="font-size: 10px;">alias</a> <a href="/tags/apache/" style="font-size: 10px;">apache</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/rm/" style="font-size: 10px;">rm</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
+						<a href="/tags/alias/" style="font-size: 10px;">alias</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/aosp/" style="font-size: 10px;">aosp</a> <a href="/tags/apache/" style="font-size: 10px;">apache</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/rm/" style="font-size: 10px;">rm</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
 					</div>
 				</section>
 				
@@ -163,6 +163,76 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-android/android-start-activity" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/blog/android/android-start-activity.html" class="article-date">
+  	<time datetime="2017-07-06T02:25:36.000Z" itemprop="datePublished">2017-07-06</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/android/android-start-activity.html">Android7.0 Activity启动流程与App冷启动时间测试源码分析</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Activity启动流程-整体概况"><a href="#1-Activity启动流程-整体概况" class="headerlink" title="1. Activity启动流程-整体概况"></a>1. Activity启动流程-整体概况</h3><p>本文只分析从Launcher冷启动一个App时，启动第一个Activity的过程，暂不考虑其他情况。<br>从Launcher点击应用图标到App第一个Activity启动完毕，期间主要涉及到四个进程：</p>
+<ul>
+<li>Launcher</li>
+<li>ActivityManagerService</li>
+<li>Zygote</li>
+<li>App</li>
+</ul>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/android/">android</a>
+	</div>
+
+
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/aosp/">aosp</a></li></ul>
+	</div>
+
+      
+        <p class="article-more-link">
+          <a  href="/blog/android/android-start-activity.html#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-web/hexo/hexo-basic" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -426,7 +496,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 Zohn | <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备16037176号</a> |
+    		&copy; 2017 Zohn | <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备16037176号</a> |
     	</div>
     	<div class="footer-right">
     		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a>
